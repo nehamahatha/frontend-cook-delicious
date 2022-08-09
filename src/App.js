@@ -1,12 +1,20 @@
 import logo from './logo.svg';
-import './App.css';
+import Navbar from './navbar';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SignInComponent from './signin';
+import SignupComponent from './signup';
+
 
 function App() {
   return (
-    <div className="App">
-        <h1>
-          Welcome to Cook Delicious!
-        </h1>
+    <div>
+        <Navbar />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/sign-in" element={<SignInComponent/>} />
+            <Route path="/sign-up" element={<SignupComponent/>} />
+          </Routes>
+        </BrowserRouter>
     </div>
   );
 }
