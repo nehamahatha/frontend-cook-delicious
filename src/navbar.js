@@ -1,4 +1,15 @@
+import auth from './utils/auth';
+
+function multiTimes(){
+	let  n = '';
+	for(let i = 0; i < 20; i++){
+		n = n + '&nbsp;';
+	}
+	return n;
+}
+
 function Navbar() {
+	
 	return (
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		  <div class="container-fluid">
@@ -8,16 +19,16 @@ function Navbar() {
 		      
 		      <ul class="navbar-nav me-auto mb-2 mb-lg-0" />
 
-
 		      <div class="dropdown">
 	          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-	            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	            Hi User
+	            <span dangerouslySetInnerHTML={{__html: multiTimes()}} />
+	            Hi {auth.isLoggedIn() ? auth.loggedInUser().name : 'User' }
 	          </a>
 	          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 	            <li><a class="dropdown-item" href="/sign-in">Login</a></li>
 	            <li><hr class="dropdown-divider" /></li>
-	            <li><a class="dropdown-item" href="#">Logout</a></li>
+	            <li><a onClick={auth.logout} class="dropdown-item" href="#">Logout</a></li>
+	            <li><a class="dropdown-item" href="/add-recipe">Add Recipe</a></li>
 	          </ul>
 	        </div>
 		      

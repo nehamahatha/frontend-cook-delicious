@@ -43,6 +43,13 @@ function SignupComponent(){
    	}
 	}
 
+	function isValidEmail(email) {
+		if (!email) return false;
+		if (!email.includes('@')) return false;
+		if (email.includes(' ')) return false;
+		return true;
+	}
+
 	return (
 		<div class="container mt-5" style={{width: "600px"}}>
 			<form onSubmit={onSubmit}>
@@ -75,7 +82,8 @@ function SignupComponent(){
 			    	value={form.email}
 			    	onChange={(e)=> updateForm({ email: e.target.value })}
 			    />
-			  </div>
+			  	{ !isValidEmail(form.email) && <font color="red">Please enter email</font> }
+			 	</div>
 			  <div class="mb-3">
 			    <label for="password" class="form-label">Password</label>
 			    <input 
