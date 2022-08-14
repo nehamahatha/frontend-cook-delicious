@@ -1,4 +1,4 @@
-const API = "http://neha-kumari-api.herokuapp.com";
+const API = "https://neha-kumari-api.herokuapp.com";
 
 export default class Api {
 	static get(url) {
