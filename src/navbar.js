@@ -1,4 +1,5 @@
 import auth from './utils/auth';
+import { useNavigate } from "react-router-dom";
 
 function multiTimes(){
 	let  n = '';
@@ -9,6 +10,12 @@ function multiTimes(){
 }
 
 function Navbar() {
+
+	const navigate = useNavigate();
+	function redirectPage(){ 
+	    auth.logout();
+	    navigate("/sign-in");
+	}
 	
 	return (
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,10 +32,9 @@ function Navbar() {
 	            Hi {auth.isLoggedIn() ? auth.loggedInUser().name : 'User' }
 	          </a>
 	          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-	            <li><a class="dropdown-item" href="/sign-in">Login</a></li>
-	            <li><hr class="dropdown-divider" /></li>
-	            <li><a onClick={auth.logout} class="dropdown-item" href="#">Logout</a></li>
-	            <li><a class="dropdown-item" href="/add-recipe">Add Recipe</a></li>
+	            {!auth.isLoggedIn() && <li><a class="dropdown-item" href="/sign-in">Login</a></li>}
+	            {auth.isLoggedIn() && <li><a onClick={redirectPage}class="dropdown-item" >Logout</a></li>}
+	            {auth.isLoggedIn() && <li><a class="dropdown-item" href="/add-recipe">Add Recipe</a></li>}
 	          </ul>
 	        </div>
 		      

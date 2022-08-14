@@ -10,16 +10,16 @@ import AddRecipe from './addRecipe';
 function App() {
   return (
     <div>
+      <BrowserRouter>
         <Navbar />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<RecipeList/>}/>
-            <Route path="/sign-in" element={<SignInComponent/>} />
-            <Route path="/sign-up" element={<SignupComponent/>} />
-            <Route path="/recipe/:id" element={<Recipe/>} />
-            <Route path="/add-recipe" element={<AddRecipe/>} />
-          </Routes>
-        </BrowserRouter>
+        <Routes>
+          <Route path="/" element={<RecipeList/>}/>
+          <Route path="/sign-in" element={<SignInComponent/>} />
+          <Route path="/sign-up" element={<SignupComponent/>} />
+          <Route path="/recipe/:id" element={<Recipe/>} />
+          <Route path="/add-recipe" element={<AddRecipe/>} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
