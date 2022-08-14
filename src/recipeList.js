@@ -4,7 +4,8 @@ class RecipeList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			recipeList:[]
+			recipeList:[],
+			query:""
 		};
 		
 	}
@@ -22,12 +23,14 @@ class RecipeList extends React.Component {
      	return;
    	});
    	const recipeList = await res.json();
-   	// console.log(recipeList);
+   	console.log(recipeList);
    	this.setState({
    		recipeList:recipeList
    	});
-
 	}
+
+	storeQuery = (e) => this.setState({ query: e.target.value });
+
 	render(){
 		return(
 			<div class="container mt-5" style={{width: "600px"}}>
@@ -35,7 +38,7 @@ class RecipeList extends React.Component {
 				<form class="form-inline my-2 my-lg-0">
 					<div class="row">
 						<div class="col-10">
-  						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="dropdownMenuButton1"/>
+  						<input onChange={this.storeQuery} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="dropdownMenuButton1"/>
   						<ul style={{width: "33%"}} class="dropdown-menu show" aria-labelledby="dropdownMenuButton1">
 					    	{this.state.recipeList.map(e => {
 					  			return <li><a class="dropdown-item" href={`/recipe/${e._id}`}>	{e.name} </a></li>
