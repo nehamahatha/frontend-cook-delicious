@@ -33,7 +33,7 @@ function Navbar() {
 	          </a>
 	          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 	            {!auth.isLoggedIn() && <li><a class="dropdown-item" href="/sign-in">Login</a></li>}
-	            {auth.isLoggedIn() && <li><a onClick={redirectPage}class="dropdown-item" >Logout</a></li>}
+	            {auth.isLoggedIn() && <li><a onClick={redirectPage} class="dropdown-item" href="#" >Logout</a></li>}
 	            {auth.isLoggedIn() && <li><a class="dropdown-item" href="/add-recipe">Add Recipe</a></li>}
 	          </ul>
 	        </div>
