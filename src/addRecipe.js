@@ -1,4 +1,6 @@
 import React  from "react";
+import Api from "./utils/api";
+
 
 class AddRecipe extends React.Component {
 	constructor(props){
@@ -32,16 +34,10 @@ class AddRecipe extends React.Component {
 			steps: this.state.steps.split('\n').filter(e=>e).map(c => ({content: c})),
 		};
 
-		const res = await fetch(`http://localhost:5000/add-recipe`, {
-     	method: "POST",
-     	headers: {
-       	"Content-Type": "application/json",
-     	},
-     	body: JSON.stringify(recipe_data),
-   	})
-   	.catch(error => {
-     	window.alert(error);
-     	return;
+		const res = await Api.post(`/add-recipe`, JSON.stringify(recipe_data))
+   		.catch(error => {
+     		window.alert(error);
+     		return;
    	}); 
 
 	}

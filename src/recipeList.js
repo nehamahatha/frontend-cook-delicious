@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import  { Navigate } from 'react-router-dom';
+import Api from "./utils/api";
 
 function lcp(a, b) {
 	let cnt = 0;
@@ -20,12 +21,7 @@ class RecipeList extends React.Component {
 
 
 	async componentDidMount() {
-		const res = await fetch(`http://localhost:5000/recipe/`, {
-     	method: "GET",
-     	headers: {
-       	"Content-Type": "application/json",
-     	},
-     })
+		const res = await Api.get(`/recipe/`)
    	.catch(error => {
      	window.alert(error);
      	return;

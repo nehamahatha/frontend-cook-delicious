@@ -1,4 +1,5 @@
 import React from "react";
+import Api from "./utils/api";
 
 function getParamId(pathname) {
 	// Todo: how?
@@ -18,12 +19,7 @@ class Recipe extends React.Component {
 
 	async componentDidMount() {
 		const id = getParamId(window.location.pathname);
-		const res = await fetch(`http://localhost:5000/recipe/${id}`, {
-     	method: "GET",
-     	headers: {
-       	"Content-Type": "application/json",
-     	},
-   	})
+		const res = await Api.get(`/recipe/${id}`)
    	.catch(error => {
      	window.alert(error);
      	return;

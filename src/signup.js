@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Api from "./utils/api";
 
 function SignupComponent(){
 	const [form, setForm] = useState({
@@ -21,13 +22,7 @@ function SignupComponent(){
 			alert("Password and confirm password do not match!");
 			return ;
 		}
-		const res = await fetch(`http://localhost:5000/user`, {
-     	method: "POST",
-     	headers: {
-       	"Content-Type": "application/json",
-     	},
-     	body: JSON.stringify(form),
-   	})
+		const res = await Api.post(`/user`, JSON.stringify(form))
    	.catch(error => {
      	window.alert(error);
      	return;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import auth from "./utils/auth";
+import Api from "./utils/api";
 import { useNavigate } from "react-router-dom";
 
 function SignInComponent(){
@@ -22,13 +23,7 @@ function SignInComponent(){
 			alert("Please fill all the required field!");
 			return ;
 		}
-		const res = await fetch(`http://localhost:5000/login`, {
-     	method: "POST",
-     	headers: {
-       	"Content-Type": "application/json",
-     	},
-     	body: JSON.stringify(form),
-   	})
+		const res = await Api.post(`/login`, JSON.stringify(form))
    	.catch(error => {
      	window.alert(error);
      	return;
