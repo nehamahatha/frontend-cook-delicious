@@ -13,8 +13,7 @@ class RecipeList extends React.Component {
 		super(props);
 		this.state = {
 			recipeList:[],
-			originalList: [],
-			query:""
+			originalList: []
 		};
 		
 	}
@@ -60,9 +59,10 @@ class RecipeList extends React.Component {
 						<div class="col-10">
   						<input onChange={this.storeQuery} class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="dropdownMenuButton1"/>
   						<ul style={{width: "33%"}} class="dropdown-menu show" aria-labelledby="dropdownMenuButton1">
-					    	{this.state.recipeList.map(e => {
+					    	{this.state.recipeList.length? this.state.recipeList.map(e => {
 					  			return <li><a class="dropdown-item" href={`/recipe/${e._id}`}>	{e.name} </a></li>
-					  		})}
+					  		}):''}
+					  		{!this.state.recipeList.length && <li> This recipe does not exist! <a href="/add-recipe"> Please add</a>.</li>}
 					  	</ul>
    					</div>
     				<div class="col-2">
